@@ -69,11 +69,11 @@ public class Baraja {
 		return this.cartas.size();
 	}
 	
-	//devuelve una carta aleatoria y la elimina de la baraja
-	public Carta darCarta()
+	//devuelve una carta aleatoria y la elimina de la baraja. ¡¡¡Es synchronized!!!
+	public synchronized Carta darCarta()
 	{
 		Random r= new Random();
-		int i=r.nextInt(this.cartas.size()-1);
+		int i=r.nextInt(this.cartas.size());
 		Carta c=this.cartas.get(i);
 		this.cartas.remove(i);
 		return c;

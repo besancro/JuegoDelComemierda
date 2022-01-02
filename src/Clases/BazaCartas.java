@@ -17,6 +17,12 @@ public class BazaCartas {
 		return this.numCartas;
 	}
 	
+	//devuelve las ultimas cartas que se han echado
+	public List<Carta> getCartas()
+	{
+		return this.cartas;
+	}
+	
 	//pre: c!=null y c se puede echar a la mesa; 0<c.size()<=4
 	//post: se echan las cartas a la mesa
 	public void echarCartas(List<Carta> c)

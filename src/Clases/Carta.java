@@ -94,4 +94,17 @@ public class Carta implements Serializable{
 
 	}
 	
+	
+	public boolean equals(Carta c)
+	{
+		if(this.palo.equals(c.palo) && this.numero==c.numero)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	
 }
