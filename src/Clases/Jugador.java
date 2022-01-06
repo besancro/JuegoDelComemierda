@@ -34,7 +34,25 @@ public class Jugador implements Serializable{
 	//recibe una carta
 	public void recibirCarta(Carta c)
 	{
-		this.cartas.add(c);
+		
+		if(c.dosDeOros())
+		{
+			this.cartas.add(0,c);
+		}
+		else
+		{
+			int i=0;
+			if(this.numCartas()>0 && this.cartas.get(0).dosDeOros())
+			{
+				i++;
+			}
+			while(i<this.numCartas() && this.cartas.get(i).mayor(c) )
+			{
+				i++;
+			}
+			this.cartas.add(i,c);
+		}
+		
 	}
 	
 	//pre: c!=null;
@@ -56,6 +74,34 @@ public class Jugador implements Serializable{
 		 return this.cartas.size();
 	 }
 	 
+	 //pre: el jugador tiene mas de dos cartas
+	 //post: devuelve las dos mejores cartas del jugador y se las quita
+	 public List<Carta> darMejoresDosCartas()
+	 {
+		 List<Carta> l=new ArrayList<Carta>();
+		 l.add(this.cartas.get(0));
+		 this.quitarCarta(this.cartas.get(0));
+		 
+		 l.add(this.cartas.get(0));
+		 this.quitarCarta(this.cartas.get(0));
+		 
+		 return l;
+	 }
+	 
+	 //pre: el jugador tiene mas de dos cartas
+	 //post: devuelve las dos peores cartas del jugador y se las quita
+	 public List<Carta> darPeoresDosCartas()
+	 {
+		 List<Carta> l=new ArrayList<Carta>();
+		 l.add(this.cartas.get(this.numCartas()-1));
+		 this.quitarCarta(this.cartas.get(this.numCartas()-1));
+
+		 l.add(this.cartas.get(this.numCartas()-1));
+		 this.quitarCarta(this.cartas.get(this.numCartas()-1));
+
+		 return l;
+	 }
+		 
 	 //pre: c!=null
 	 //post: devuelve true si el jugador tiene la carta c
 	 public boolean tieneCarta(Carta c)
@@ -89,4 +135,6 @@ public class Jugador implements Serializable{
 		 }
 		 return s;
 	 }
+	 
+	 
 }

@@ -1,5 +1,6 @@
 package Clases;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BazaCartas {
@@ -9,6 +10,7 @@ public class BazaCartas {
 	public BazaCartas()
 	{
 		this.numCartas=0;
+		this.cartas=new ArrayList<Carta>();
 	}
 	
 	//devuelve el numero de cartas que se estan echando a la vez
@@ -57,7 +59,7 @@ public class BazaCartas {
 					i++;
 				}
 				
-				if(this.cartas!=null && b)
+				if(this.cartas.size()>0 && b)
 				{
 					if(!carta.mayor(this.cartas.get(0)))
 					{
@@ -73,6 +75,21 @@ public class BazaCartas {
 			
 		}
 		
+		return b;
+	}
+	
+	//pre: c!=null y 0<c.size()<=4
+	//post: devuelve true si se hace plin
+	public boolean plin(List<Carta> c)
+	{
+		boolean b=false;
+		if(this.numCartas!=0 && this.puedeEchar(c))
+		{
+			if(this.cartas.get(0).getNumero()==c.get(0).getNumero())
+			{
+				b=true;
+			}
+		}
 		return b;
 	}
 }

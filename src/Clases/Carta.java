@@ -83,7 +83,7 @@ public class Carta implements Serializable{
 	public boolean dosDeOros()
 	{
 
-		if(this.palo=="oros" && this.getNumero()==2)
+		if(this.palo.equals("oros") && this.getNumero()==2)
 		{
 			return true;
 		}
@@ -95,9 +95,12 @@ public class Carta implements Serializable{
 	}
 	
 	
-	public boolean equals(Carta c)
+	//pre: o es una Carta
+	public boolean equals(Object o)
 	{
-		if(this.palo.equals(c.palo) && this.numero==c.numero)
+		Carta c=(Carta)o;
+		
+		if(c!=null && this.palo.equals(c.palo) && this.numero==c.numero)
 		{
 			return true;
 		}
